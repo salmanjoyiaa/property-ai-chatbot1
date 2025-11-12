@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Improve tap highlight */
+    -webkit-tap-highlight-color: rgba(29, 114, 243, 0.1);
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Safe area insets for mobile devices */
+  .safe-area-inset {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Touch manipulation for better mobile performance */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  /* Enhanced scrollbar */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(203 213 225) transparent;
+  }
+
+  /* Chat bubble triangles - removed for cleaner look */
+  .bubble:after {
+    display: none;
+  }
+
+  /* Text selection */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+}
+
+/* Custom prose styles for markdown */
+@layer components {
+  .prose-custom {
+    max-width: none;
+    font-size: 0.875rem;
+    line-height: 1.7142857;
+  }
+  
+  .prose-custom p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+  }
+  
+  .prose-custom p:first-child {
+    margin-top: 0;
+  }
+  
+  .prose-custom p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .prose-custom strong {
+    font-weight: 600;
+    color: inherit;
+  }
+  
+  .prose-custom code {
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.375rem;
+    background-color: rgb(243 244 246);
+    color: rgb(31 41 55);
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .prose-custom pre {
+    background-color: rgb(17 24 39);
+    color: rgb(243 244 246);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    overflow-x: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .prose-custom pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    color: inherit;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+  
+  .prose-custom a {
+    color: rgb(29 114 243);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .prose-custom a:hover {
+    color: rgb(22 90 193);
+  }
+  
+  .prose-custom a:active {
+    color: rgb(17 70 154);
+  }
+  
+  .prose-custom ul,
+  .prose-custom ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.25rem;
+  }
+  
+  .prose-custom li {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .prose-custom h1,
+  .prose-custom h2,
+  .prose-custom h3,
+  .prose-custom h4,
+  .prose-custom h5,
+  .prose-custom h6 {
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .prose-custom blockquote {
+    border-left-width: 4px;
+    border-color: rgb(209 213 219);
+    padding-left: 1rem;
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Table styling */
+  .prose-custom table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Bot message tables (white background) */
+  .prose-custom .table-bot thead {
+    background-color: rgb(243 244 246);
+  }
+
+  .prose-custom .table-bot tbody tr {
+    border-bottom: 1px solid rgb(229 231 235);
+  }
+
+  .prose-custom .table-bot tbody tr:hover {
+    background-color: rgb(249 250 251);
+  }
+
+  .prose-custom .table-bot tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .prose-custom .table-bot th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(55 65 81);
+    border-bottom: 2px solid rgb(209 213 219);
+  }
+
+  /* User message tables (blue background) */
+  .prose-custom .table-user thead {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .prose-custom .table-user tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .prose-custom .table-user tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .prose-custom .table-user tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .prose-custom .table-user th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(255, 255, 255);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Common table cell styling */
+  .prose-custom td {
+    padding: 0.75rem;
+    vertical-align: top;
+    word-break: break-word;
+  }
+
+  .prose-custom td:first-child,
+  .prose-custom th:first-child {
+    padding-left: 1rem;
+  }
+
+  .prose-custom td:last-child,
+  .prose-custom th:last-child {
+    padding-right: 1rem;
+  }
+
+  /* Improved list styling */
+  .prose-custom ul,
+  .prose-custom ol {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-custom li {
+    margin-top: 0.375rem;
+    margin-bottom: 0.375rem;
+    line-height: 1.6;
+  }
+
+  .prose-custom li > p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-custom ul ul,
+  .prose-custom ol ol,
+  .prose-custom ul ol,
+  .prose-custom ol ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Mobile-specific text sizing */
+  @media (max-width: 640px) {
+    .prose-custom {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    
+    .prose-custom p {
+      font-size: 0.875rem;
+    }
+    
+    .prose-custom code {
+      font-size: 0.7rem;
+    }
+
+    .prose-custom table {
+      font-size: 0.75rem;
+    }
+
+    .prose-custom th,
+    .prose-custom td {
+      padding: 0.5rem 0.375rem;
+    }
+
+    .prose-custom th {
+      font-size: 0.7rem;
+    }
+  }
+}
